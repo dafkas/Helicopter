@@ -1,4 +1,4 @@
-[Helicopter game]
+# Helicopter game
 
-> Helicopter game build with typescript
+[Click to play the game](https://dafkas.github.io/Helicopter/dist/)
 
