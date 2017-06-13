@@ -60,7 +60,7 @@ class Level {
                 //console.log(bullet.hitsEnemy(enemy, i));
                 if(bullet.hitsEnemy(enemy, i)) {
 
-                    //bomb.play();
+                    bomb.play();
 
                  //   this.player.activeBullets.splice(j, 1);
                     bullet.remove();
@@ -72,7 +72,7 @@ class Level {
             if(bullet.hitsGround(this.ground.offsetTop - 50)) {
                // this.player.activeBullets.splice(j, 1);
                 bullet.remove();
-                //bomb.play();
+                bomb.play();
             }
         });
     

@@ -152,6 +152,7 @@ var Level = (function () {
             bullet.move();
             _this.enemies.forEach(function (enemy, i) {
                 if (bullet.hitsEnemy(enemy, i)) {
+                    bomb.play();
                     bullet.remove();
                     enemy.remove();
                     console.log("hit");
@@ -159,6 +160,7 @@ var Level = (function () {
             });
             if (bullet.hitsGround(_this.ground.offsetTop - 50)) {
                 bullet.remove();
+                bomb.play();
             }
         });
     };
