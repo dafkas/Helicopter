@@ -29,7 +29,7 @@ class Level {
     private createEnemy()
     {
         this.enemies.push(new Enemy(this.div));
-        if(this.enemies.length > 0) clearInterval(this.createEnemies);
+        if(this.enemies.length > 20) clearInterval(this.createEnemies);
     }
 
     public update(): void {

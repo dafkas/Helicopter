@@ -129,7 +129,7 @@ var Level = (function () {
     }
     Level.prototype.createEnemy = function () {
         this.enemies.push(new Enemy(this.div));
-        if (this.enemies.length > 0)
+        if (this.enemies.length > 20)
             clearInterval(this.createEnemies);
     };
     Level.prototype.update = function () {
