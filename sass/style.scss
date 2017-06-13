@@ -1,0 +1,56 @@
+html, body{
+    background-image: url('../img/background.png');
+    background-size:cover;
+}
+
+body * {
+    position: absolute;
+    display: block;
+    margin:0px; padding:0px;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+}
+
+level {
+    left: calc(50% - 719px);
+    top: calc(80% - -1px);
+    width: 1440px;
+    height: 150px;
+    background-image: url(../img/level.png);
+    overflow: hidden;
+    background-repeat: repeat-x;
+}
+
+ground {
+    background-color: #3e4240;
+    top: calc(91% - -23px);
+    width: 1440px;
+    height: 6%;
+    overflow: hidden;
+    background-repeat: repeat-x;
+    margin-left: -8px;
+}
+
+enemy {
+    width:4%; 
+    min-height:12%;
+	background: url('../img/enemy.gif') no-repeat center center;
+    background-size: 175px;
+    padding-left:80px;
+}
+
+player
+{
+    width:5%; 
+    min-height: 4%;
+	background: url('../img/player.png') no-repeat center center;
+}
+
+bullet
+{
+    width: 1%;
+    min-height: 2%;
+    background: url('../img/bullet.png')no-repeat;
+    margin-top: 33px;
+    margin-left: 39px;
+}
