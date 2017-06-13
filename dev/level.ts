@@ -35,8 +35,8 @@ class Level {
     public update(): void {
         this.player.move();
         
-        var drop = new Audio("sounds/drop.mp3"); 
-        var bomb = new Audio("sounds/bomb.wav"); 
+        // var drop = new Audio("sounds/drop.mp3"); 
+        // var bomb = new Audio("sounds/bomb.wav"); 
 
 
         this.enemies.forEach(enemy => enemy.move())
@@ -45,15 +45,15 @@ class Level {
 
         this.player.activeBullets.forEach((bullet, i) => {
             bullet.move();
-            console.log(drop.play());
+            // console.log(drop.play());
             this.enemies.forEach((enemy, i) => {
                 //console.log(bullet.hitsEnemy(enemy, i));
                 if(bullet.hitsEnemy(enemy, i)) {
                     console.log("hit");
-                    drop.pause();
+                    // drop.pause();
                     
-                    drop.currentTime = 0;
-                    bomb.play();
+                    // drop.currentTime = 0;
+                    // bomb.play();
 
                     bullet.remove();
                     enemy.remove();

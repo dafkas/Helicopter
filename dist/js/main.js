@@ -135,19 +135,13 @@ var Level = (function () {
     Level.prototype.update = function () {
         var _this = this;
         this.player.move();
-        var drop = new Audio("sounds/drop.mp3");
-        var bomb = new Audio("sounds/bomb.wav");
         this.enemies.forEach(function (enemy) { return enemy.move(); });
         console.log(this.player.activeBullets);
         this.player.activeBullets.forEach(function (bullet, i) {
             bullet.move();
-            console.log(drop.play());
             _this.enemies.forEach(function (enemy, i) {
                 if (bullet.hitsEnemy(enemy, i)) {
                     console.log("hit");
-                    drop.pause();
-                    drop.currentTime = 0;
-                    bomb.play();
                     bullet.remove();
                     enemy.remove();
                     _this.player.activeBullets.splice(i, 1);
