@@ -136,7 +136,6 @@ var Level = (function () {
         var _this = this;
         this.player.move();
         this.enemies.forEach(function (enemy) { return enemy.move(); });
-        console.log(this.player.activeBullets);
         this.player.activeBullets.forEach(function (bullet, i) {
             bullet.move();
             _this.enemies.forEach(function (enemy, i) {

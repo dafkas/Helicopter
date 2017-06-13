@@ -41,7 +41,7 @@ class Level {
 
         this.enemies.forEach(enemy => enemy.move())
 
-        console.log(this.player.activeBullets);
+        // console.log(this.player.activeBullets);
 
         this.player.activeBullets.forEach((bullet, i) => {
             bullet.move();
