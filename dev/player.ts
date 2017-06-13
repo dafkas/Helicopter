@@ -56,19 +56,12 @@ class Player {
 
     public shoot() :void
     {
-
-
-        this.activeBullets.push(new Bullet(this.x, this.y));
-
-        // let bullet = document.createElement("bullet");
-        // document.body.appendChild(bullet);
-
-        // if(this.bulletY < 650)
-        // {
-        //     bullet.style.transform = "translate(" + this.x + "px, " + this.bulletY + "px)";
-        // }
-
-
+        if(this.activeBullets.length > 0)
+        {
+            console.log("can't fire");
+        } else {
+            this.activeBullets.push(new Bullet(this.x, this.y));
+        }
     }
 
 }

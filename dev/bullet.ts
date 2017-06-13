@@ -9,7 +9,7 @@ class Bullet extends GameObject {
 
     constructor(x:number, y:number)
     {
-        super(x, y, 'bullet', 18, 18);
+        super(x, y, 'bullet', 5, 5);
 
     }
 

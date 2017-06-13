@@ -43,6 +43,4 @@ player {
 bullet {
   width: 1%;
   min-height: 2%;
-  background: url("../img/bullet.png") no-repeat;
-  margin-top: 33px;
-  margin-left: 39px; }
+  background: url("../img/bullet.png") no-repeat; }

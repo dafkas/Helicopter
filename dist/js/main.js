@@ -26,7 +26,7 @@ var GameObject = (function () {
 var Bullet = (function (_super) {
     __extends(Bullet, _super);
     function Bullet(x, y) {
-        var _this = _super.call(this, x, y, 'bullet', 18, 18) || this;
+        var _this = _super.call(this, x, y, 'bullet', 5, 5) || this;
         _this.speedY = 4;
         return _this;
     }
@@ -111,7 +111,12 @@ var Player = (function () {
         }
     };
     Player.prototype.shoot = function () {
-        this.activeBullets.push(new Bullet(this.x, this.y));
+        if (this.activeBullets.length > 0) {
+            console.log("can't fire");
+        }
+        else {
+            this.activeBullets.push(new Bullet(this.x, this.y));
+        }
     };
     return Player;
 }());
@@ -119,6 +124,7 @@ var Level = (function () {
     function Level(game) {
         var _this = this;
         this.enemies = new Array();
+        this.bullets = new Array();
         this.div = document.createElement("level");
         document.body.appendChild(this.div);
         this.ground = document.createElement("ground");
@@ -127,28 +133,32 @@ var Level = (function () {
         this.player = new Player();
         this.game = game;
     }
+    Level.prototype.addBulletToLevel = function () {
+    };
+    Level.prototype.removeBullet = function (b) {
+    };
     Level.prototype.createEnemy = function () {
         this.enemies.push(new Enemy(this.div));
-        if (this.enemies.length > 20)
+        if (this.enemies.length > 10)
             clearInterval(this.createEnemies);
     };
     Level.prototype.update = function () {
         var _this = this;
         this.player.move();
+        var drop = new Audio("sounds/drop.mp3");
+        var bomb = new Audio("sounds/bomb.wav");
         this.enemies.forEach(function (enemy) { return enemy.move(); });
-        this.player.activeBullets.forEach(function (bullet, i) {
+        this.player.activeBullets.forEach(function (bullet, j) {
             bullet.move();
             _this.enemies.forEach(function (enemy, i) {
                 if (bullet.hitsEnemy(enemy, i)) {
-                    console.log("hit");
                     bullet.remove();
                     enemy.remove();
-                    _this.player.activeBullets.splice(i, 1);
+                    console.log("hit");
                 }
             });
             if (bullet.hitsGround(_this.ground.offsetTop - 50)) {
                 bullet.remove();
-                _this.player.activeBullets.splice(i, 1);
             }
         });
     };
