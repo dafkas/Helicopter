@@ -18,7 +18,8 @@ class Enemy
         document.body.appendChild(this.div);
         this.width = 168;
         this.height = 108;
-        this.x = Math.ceil(Math.random() * 5) * 110;
+        this.x = Math.round(Math.random() * 5) * 120;
+        
         this.y = 660;
         this.speed = Math.random() * 2 + 2;
         this.startPosition();

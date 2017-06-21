@@ -52,7 +52,7 @@ var Enemy = (function () {
         document.body.appendChild(this.div);
         this.width = 168;
         this.height = 108;
-        this.x = Math.ceil(Math.random() * 5) * 110;
+        this.x = Math.round(Math.random() * 5) * 120;
         this.y = 660;
         this.speed = Math.random() * 2 + 2;
         this.startPosition();
@@ -118,6 +118,9 @@ var Player = (function () {
             this.activeBullets.push(new Bullet(this.x, this.y));
         }
     };
+    Player.prototype.removePlayer = function () {
+        this.div.remove();
+    };
     return Player;
 }());
 var Level = (function () {
@@ -129,50 +132,77 @@ var Level = (function () {
         document.body.appendChild(this.div);
         this.ground = document.createElement("ground");
         document.body.appendChild(this.ground);
-        this.createEnemies = setInterval(function () { return _this.createEnemy(); }, 400);
+        this.createEnemies = setInterval(function () { return _this.createEnemy(); }, 1000);
         this.player = new Player();
         this.game = game;
     }
-    Level.prototype.addBulletToLevel = function () {
-    };
-    Level.prototype.removeBullet = function (b) {
-    };
     Level.prototype.createEnemy = function () {
         this.enemies.push(new Enemy(this.div));
-        if (this.enemies.length > 10)
+        if (this.enemies.length > 3)
             clearInterval(this.createEnemies);
     };
     Level.prototype.update = function () {
         var _this = this;
         this.player.move();
-        var drop = new Audio("sounds/drop.mp3");
-        var bomb = new Audio("sounds/bomb.wav");
         this.enemies.forEach(function (enemy) { return enemy.move(); });
         this.player.activeBullets.forEach(function (bullet, j) {
             bullet.move();
             _this.enemies.forEach(function (enemy, i) {
                 if (bullet.hitsEnemy(enemy, i)) {
-                    bomb.play();
+                    _this.player.activeBullets.splice(j, 1);
+                    _this.enemies.splice(i, 1);
+                    _this.score = 100;
                     bullet.remove();
+                    console.log(_this.enemies.length);
                     enemy.remove();
-                    console.log("hit");
+                    if (_this.enemies.length == 0) {
+                        console.log("no more enemies");
+                        _this.game.endGame();
+                    }
                 }
             });
-            if (bullet.hitsGround(_this.ground.offsetTop - 50)) {
+            if (bullet.hitsGround(_this.ground.offsetTop - 20)) {
+                _this.player.activeBullets.splice(j, 1);
                 bullet.remove();
-                bomb.play();
             }
         });
+    };
+    Level.prototype.remove = function () {
+        this.ground.remove();
+        this.div.remove();
+        this.div = document.createElement("endscreen");
+        document.body.appendChild(this.div);
+        document.getElementsByTagName("endscreen")[0].innerHTML = "You won!";
+        document.getElementsByName("endscreen")[0].innerHTML = this.startGame();
+        this.player.removePlayer();
     };
     return Level;
 }());
 var Game = (function () {
     function Game() {
-        var _this = this;
+        this.score = 0;
         this.enemies = new Array();
+        this.btn = document.createElement("startbutton");
+        document.body.appendChild(this.btn);
+        var ui = document.createElement("ui");
+        document.body.appendChild(ui);
+        this.updateScore();
+        this.btn.addEventListener("click", function () {
+            this.btn.remove();
+            this.startGame();
+        }.bind(this));
+    }
+    Game.prototype.startGame = function () {
+        var _this = this;
         this.level = new Level(this);
         requestAnimationFrame(function () { return _this.gameLoop(); });
-    }
+    };
+    Game.prototype.endGame = function () {
+        this.level.remove();
+    };
+    Game.prototype.updateScore = function () {
+        document.getElementsByTagName("ui")[0].innerHTML = "SCORE " + this.score;
+    };
     Game.prototype.gameLoop = function () {
         var _this = this;
         this.level.update();

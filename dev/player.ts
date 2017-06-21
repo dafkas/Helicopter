@@ -1,4 +1,5 @@
 /// <reference path="bullet.ts"/>
+/// <reference path="game.ts"/>
 class Player {
 
     public div: HTMLElement;
@@ -55,7 +56,7 @@ class Player {
     }
 
     public shoot() :void
-    {
+    {   
         if(this.activeBullets.length > 0)
         {
             console.log("can't fire");
@@ -64,4 +65,8 @@ class Player {
         }
     }
 
+    public removePlayer()
+    {
+        this.div.remove();
+    }
 }
