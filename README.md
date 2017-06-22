@@ -13,5 +13,5 @@ De indeling van mijn classes en instances zijn op de meest logische wijze ingede
 # Inheritance
 De inheritance die ik toegepast heb op een bullet zou ik ook kunnen gebruiken voor de enemy, omdat ze allebei gedeeltelijk dezelfde properties hebben.
 
-![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+![alt text](https://github.com/dafkas/Helicopter/blob/master/dist/img/UML.png
 
