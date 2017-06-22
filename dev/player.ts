@@ -7,7 +7,6 @@ class Player {
     public x:number;
     public y:number;
 
-    public bulletY:number;
     private speedX : number;
     private speedY : number;
 
